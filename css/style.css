@@ -1,0 +1,286 @@
+/* =========================================
+   CSS VARIABLES & RESET
+   ========================================= */
+:root {
+    --bg-dark: #0b0c10;
+    --bg-gradient: linear-gradient(135deg, #0b0c10 0%, #1f2833 100%);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-highlight: rgba(255, 255, 255, 0.1);
+    
+    --text-primary: #e0e6ed;
+    --text-secondary: #8b9bb4;
+    
+    --neon-cyan: #00e5ff;
+    --neon-green: #00ff9d;
+    --neon-red: #ff3366;
+    --neon-yellow: #ffcc00;
+    --neon-purple: #b388ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+/* =========================================
+   LAYOUT & GLASS PANELS
+   ========================================= */
+.app-container {
+    width: 100%;
+    max-width: 650px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 1.5rem;
+}
+
+.app-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   CONTROLS
+   ========================================= */
+.controls-panel {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.glass-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+.glass-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 229, 255, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--neon-purple);
+    border: 1px solid var(--neon-purple);
+}
+.btn-secondary:hover {
+    background: rgba(179, 136, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   MESSAGES
+   ========================================= */
+.validation-message {
+    color: var(--neon-red);
+    font-weight: 600;
+    min-height: 24px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-shadow: 0 0 8px rgba(255, 51, 102, 0.4);
+}
+
+/* =========================================
+   TASK LIST & ITEMS
+   ========================================= */
+.task-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    padding: 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.task-item:hover {
+    border-color: var(--glass-highlight);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.task-item.completed {
+    background: rgba(0, 255, 157, 0.05);
+    border-color: rgba(0, 255, 157, 0.2);
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-text {
+    flex: 1;
+    margin-right: 15px;
+    font-size: 1rem;
+    word-break: break-word;
+}
+
+.edit-input {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--neon-yellow);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-right: 15px;
+}
+.edit-input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 204, 0, 0.3);
+}
+
+/* Task Action Buttons */
+.task-item button {
+    padding: 8px 12px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.complete-btn {
+    background: rgba(0, 255, 157, 0.15);
+    color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+}
+.complete-btn:hover { background: var(--neon-green); color: #000; }
+
+.edit-btn {
+    background: rgba(255, 204, 0, 0.15);
+    color: var(--neon-yellow);
+    border: 1px solid var(--neon-yellow);
+}
+.edit-btn:hover { background: var(--neon-yellow); color: #000; }
+
+.remove-btn {
+    background: rgba(255, 51, 102, 0.15);
+    color: var(--neon-red);
+    border: 1px solid var(--neon-red);
+}
+.remove-btn:hover { background: var(--neon-red); color: #fff; }
+
+/* =========================================
+   SUMMARY PANEL
+   ========================================= */
+.summary-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+}
+
+.stat-box {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-value.pending { color: var(--neon-cyan); }
+.stat-value.completed { color: var(--neon-green); }
